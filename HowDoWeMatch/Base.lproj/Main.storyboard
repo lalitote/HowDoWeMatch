@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="HowDoWeMatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,100 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8ZI-co-ZLs">
+                                <rect key="frame" x="20" y="28" width="560" height="522"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2NU-Hl-QZA">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="466"/>
+                                        <subviews>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p3d-bq-kme">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="229"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="a0I-LL-j1X" appends="YES" id="md8-X4-MOy"/>
+                                                </connections>
+                                            </imageView>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="blj-eG-a0T">
+                                                <rect key="frame" x="0.0" y="237" width="560" height="229"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="LpS-sf-WxU" appends="YES" id="hcc-VX-dTS"/>
+                                                </connections>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="p3d-bq-kme" firstAttribute="leading" secondItem="2NU-Hl-QZA" secondAttribute="leading" id="MeA-TD-xrM"/>
+                                            <constraint firstAttribute="trailing" secondItem="p3d-bq-kme" secondAttribute="trailing" id="yjo-c5-bOr"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhA-CP-HZd">
+                                        <rect key="frame" x="0.0" y="474" width="560" height="48"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="2gI-xc-3tC"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="540" id="9Ro-tr-JrJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <state key="normal" title="check">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="9Ro-tr-JrJ"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="checkIfWeMatch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dfl-ye-2Qp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2NU-Hl-QZA" firstAttribute="leading" secondItem="BhA-CP-HZd" secondAttribute="leading" id="6Kl-f9-jdQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="BhA-CP-HZd" secondAttribute="trailing" id="XLC-lF-9jd"/>
+                                    <constraint firstItem="BhA-CP-HZd" firstAttribute="leading" secondItem="8ZI-co-ZLs" secondAttribute="leading" id="xXZ-uH-xP3"/>
+                                </constraints>
+                            </stackView>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mt-iI-6ei" customClass="SpinningCircleView" customModule="HowDoWeMatch" customModuleProvider="target">
+                                <rect key="frame" x="20" y="28" width="560" height="475"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Mt-iI-6ei" firstAttribute="leading" secondItem="8ZI-co-ZLs" secondAttribute="leading" id="0cz-Hp-LIv"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8ZI-co-ZLs" secondAttribute="bottom" constant="50" id="0hP-tG-8us"/>
+                            <constraint firstItem="3Mt-iI-6ei" firstAttribute="trailing" secondItem="8ZI-co-ZLs" secondAttribute="trailing" id="2x4-lS-geM"/>
+                            <constraint firstItem="8ZI-co-ZLs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="B4g-NU-1YJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Mt-iI-6ei" secondAttribute="bottom" constant="97" id="CLf-0L-TOt"/>
+                            <constraint firstItem="8ZI-co-ZLs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="DRw-MX-Vw0"/>
+                            <constraint firstItem="3Mt-iI-6ei" firstAttribute="top" secondItem="8ZI-co-ZLs" secondAttribute="top" id="PQy-Sc-fcp"/>
+                            <constraint firstItem="8ZI-co-ZLs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="lrh-ar-mrQ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonCheck" destination="BhA-CP-HZd" id="3RL-RY-wiv"/>
+                        <outlet property="photoImageView" destination="p3d-bq-kme" id="Mb2-eD-k22"/>
+                        <outlet property="photoImageView_down" destination="blj-eG-a0T" id="n9e-rM-fOg"/>
+                        <outlet property="spinningCircle" destination="3Mt-iI-6ei" id="Y4E-1U-RzH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="a0I-LL-j1X">
+                    <connections>
+                        <action selector="addPhoto:" destination="BYZ-38-t0r" id="hv4-h5-tcV"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="LpS-sf-WxU">
+                    <connections>
+                        <action selector="addPhoto_down:" destination="BYZ-38-t0r" id="o9B-KV-UTh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="972" y="130"/>
         </scene>
     </scenes>
 </document>

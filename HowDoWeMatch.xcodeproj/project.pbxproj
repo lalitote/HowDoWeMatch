@@ -13,6 +13,9 @@
 		EA0469A01D63A2CE003E3CFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA04699F1D63A2CE003E3CFC /* Assets.xcassets */; };
 		EA0469A31D63A2CE003E3CFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA0469A11D63A2CE003E3CFC /* LaunchScreen.storyboard */; };
 		EA0469AE1D63A2CE003E3CFC /* HowDoWeMatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0469AD1D63A2CE003E3CFC /* HowDoWeMatchTests.swift */; };
+		EADBE1E51D75A75C00D1BBC2 /* SpinningCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADBE1E41D75A75C00D1BBC2 /* SpinningCircleView.swift */; };
+		EADBE1E71D75A79300D1BBC2 /* SpinningCircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADBE1E61D75A79300D1BBC2 /* SpinningCircleViewController.swift */; };
+		EADBE1E91D77706C00D1BBC2 /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADBE1E81D77706C00D1BBC2 /* UIKitExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		EA0469A91D63A2CE003E3CFC /* HowDoWeMatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HowDoWeMatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA0469AD1D63A2CE003E3CFC /* HowDoWeMatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowDoWeMatchTests.swift; sourceTree = "<group>"; };
 		EA0469AF1D63A2CE003E3CFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EADBE1E41D75A75C00D1BBC2 /* SpinningCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningCircleView.swift; sourceTree = "<group>"; };
+		EADBE1E61D75A79300D1BBC2 /* SpinningCircleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningCircleViewController.swift; sourceTree = "<group>"; };
+		EADBE1E81D77706C00D1BBC2 /* UIKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +83,12 @@
 		EA0469971D63A2CE003E3CFC /* HowDoWeMatch */ = {
 			isa = PBXGroup;
 			children = (
-				EA0469981D63A2CE003E3CFC /* AppDelegate.swift */,
 				EA04699A1D63A2CE003E3CFC /* ViewController.swift */,
+				EADBE1E41D75A75C00D1BBC2 /* SpinningCircleView.swift */,
+				EADBE1E81D77706C00D1BBC2 /* UIKitExtensions.swift */,
+				EADBE1E61D75A79300D1BBC2 /* SpinningCircleViewController.swift */,
 				EA04699C1D63A2CE003E3CFC /* Main.storyboard */,
-				EA04699F1D63A2CE003E3CFC /* Assets.xcassets */,
-				EA0469A11D63A2CE003E3CFC /* LaunchScreen.storyboard */,
-				EA0469A41D63A2CE003E3CFC /* Info.plist */,
+				EADBE1E31D75A6F500D1BBC2 /* Supporting Files */,
 			);
 			path = HowDoWeMatch;
 			sourceTree = "<group>";
@@ -94,6 +100,17 @@
 				EA0469AF1D63A2CE003E3CFC /* Info.plist */,
 			);
 			path = HowDoWeMatchTests;
+			sourceTree = "<group>";
+		};
+		EADBE1E31D75A6F500D1BBC2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA0469981D63A2CE003E3CFC /* AppDelegate.swift */,
+				EA04699F1D63A2CE003E3CFC /* Assets.xcassets */,
+				EA0469A11D63A2CE003E3CFC /* LaunchScreen.storyboard */,
+				EA0469A41D63A2CE003E3CFC /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +214,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EADBE1E71D75A79300D1BBC2 /* SpinningCircleViewController.swift in Sources */,
+				EADBE1E51D75A75C00D1BBC2 /* SpinningCircleView.swift in Sources */,
 				EA04699B1D63A2CE003E3CFC /* ViewController.swift in Sources */,
 				EA0469991D63A2CE003E3CFC /* AppDelegate.swift in Sources */,
+				EADBE1E91D77706C00D1BBC2 /* UIKitExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +410,7 @@
 				EA0469B41D63A2CE003E3CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EA0469B51D63A2CE003E3CFC /* Build configuration list for PBXNativeTarget "HowDoWeMatchTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +419,7 @@
 				EA0469B71D63A2CE003E3CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
