@@ -15,11 +15,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var photoImageView_down: UIImageView!
     @IBOutlet weak var buttonCheck: UIButton!
-    @IBOutlet weak var spinningCircle: SpinningCircleView!
+    
+    var checkingInProgress = CheckingInProgress()
     
     var photo: UIImageView!
     
+    var iteration: Int = 0
+    let numberOfIterations = 6
+    
     let imagePickerController = UIImagePickerController()
+    
+    var resultMessage: String = "You match perfectly! 88%"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,15 +111,89 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         photo = photoImageView_down
     }
     
-    func createCircles() {
-        let circleCenter = CGPoint(x: 100, y: 100)
-        let circleRadius = spinningCircle.circleRadius
-        let circleView = SpinningCircleView()
-        view.addSubview(circleView)
+    // Functions for checking the matching
+    
+    func randomNumber(range: Range<Int>) -> Int {
+        let min = range.startIndex
+        let max = range.endIndex
+        return Int(arc4random_uniform(UInt32(max - min))) + min
     }
     
+    func close() {
+        checkingInProgress.hideIndicator()
+        //CheckingInProgress.shared.hideIndicator()
+        if iteration != 0 {
+            checking()
+        } else {
+            result()
+        }
+    }
+    
+    func setCloseTimer() {
+        _ = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(ViewController.close), userInfo: nil, repeats: false)
+    }
+    
+    func checking() {
+        
+        iteration -= 1
+        
+        var height: Int
+        if iteration % 2 == 0 {
+            height = randomNumber(40...Int(photoImageView.bounds.height)-40)
+        } else {
+            height = randomNumber(Int(photoImageView.bounds.height + 48)...Int(photoImageView.bounds.height * 2)-40)
+        }
+        let width = randomNumber(40...Int(photoImageView.bounds.width))
+        
+        checkingInProgress.position.x = CGFloat(width)
+        checkingInProgress.position.y = CGFloat(height)
+        
+        checkingInProgress.showIndicator(view)
+        setCloseTimer()
+        
+        //CheckingInProgress.shared.showIndicator(view)
+    }
+
+    func twoPhotosMissing() {
+        let alert = UIAlertController(
+            title: "Oops!",
+            message: "You didn't choose the photos",
+            preferredStyle: .Alert)
+        let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(okButton)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func onePhotosMissing() {
+        let alert = UIAlertController(
+            title: "Oops!",
+            message: "Choose another photo",
+            preferredStyle: .Alert)
+        let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(okButton)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func result() {
+        let alert = UIAlertController(
+            title: nil,
+            message: resultMessage,
+            preferredStyle: .Alert)
+        let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(okButton)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
+    
     @IBAction func checkIfWeMatch(sender: UIButton) {
-        createCircles()
+        if photoImageView.image == nil && photoImageView_down.image == nil  {
+            twoPhotosMissing()
+        } else if photoImageView_down.image == nil || photoImageView.image == nil {
+            onePhotosMissing()
+        } else {
+            iteration = numberOfIterations
+            checking()
+        }
     }
     
     //MARK: Delegates
@@ -129,6 +209,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
 }
+
 
