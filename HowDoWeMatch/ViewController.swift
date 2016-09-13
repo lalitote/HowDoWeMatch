@@ -108,13 +108,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func addPhoto(sender: UITapGestureRecognizer) {
         photoAlert()
         photo = photoImageView
-        imageSize_up = imageSize
     }
     
     @IBAction func addPhoto_down(sender: UITapGestureRecognizer) {
         photoAlert()
         photo = photoImageView_down
-        imageSize_down = imageSize
     }
     
     // Functions for checking the matching
@@ -181,11 +179,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func resultMessage(imageSize_up: Int, imageSize_down: Int) -> String {
-        let result = (imageSize_up + imageSize_down) % 100
-        return "You match perfectly: \(result)"
+        var result = (imageSize_up + imageSize_down) % 100
+        if imageSize_down == imageSize_up {
+            result = 100
+        } else if result < 50 {
+            result += 50
+        }
+        return "You match perfectly: \(result)%"
     }
     
     func result() {
+        let imgData_up: NSData = NSData(data: UIImageJPEGRepresentation(photoImageView.image!, 1)!)
+        imageSize_up = imgData_up.length
+        
+        let imgData_down: NSData = NSData(data: UIImageJPEGRepresentation(photoImageView_down.image!, 1)!)
+        imageSize_down = imgData_down.length
+        
         let alert = UIAlertController(
             title: nil,
             message: resultMessage(imageSize_up, imageSize_down: imageSize_down),
@@ -214,8 +223,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         photo.contentMode = .ScaleAspectFill
         photo.image = selectedImage
-        let imgData: NSData = NSData(data: UIImageJPEGRepresentation(selectedImage, 1)!)
-        imageSize = imgData.length
+//        let imgData: NSData = NSData(data: UIImageJPEGRepresentation(selectedImage, 1)!)
+//        imageSize = imgData.length
         dismissViewControllerAnimated(true, completion: nil)
     }
     
