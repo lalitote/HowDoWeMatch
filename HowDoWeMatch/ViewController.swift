@@ -178,6 +178,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    
+    
     func resultMessage(imageSize_up: Int, imageSize_down: Int) -> String {
         var result = (imageSize_up + imageSize_down) % 100
         if imageSize_down == imageSize_up {
@@ -185,7 +187,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else if result < 50 {
             result += 50
         }
-        return "You match perfectly: \(result)%"
+        
+        var message: String
+        
+        switch result {
+        case 100:
+            message = "You match perfectly!"
+        case 90...100:
+            message = "You guys rock!"
+        case 80...90:
+            message = "Amazing!"
+        case 70...80:
+            message = "Fabulous!"
+        case 60...70:
+            message = "Well, well!"
+        default:
+            message = "Congratulations!"
+        }
+        return "\(result)% \r\n" + message
     }
     
     func result() {
@@ -223,8 +242,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         photo.contentMode = .ScaleAspectFill
         photo.image = selectedImage
-//        let imgData: NSData = NSData(data: UIImageJPEGRepresentation(selectedImage, 1)!)
-//        imageSize = imgData.length
         dismissViewControllerAnimated(true, completion: nil)
     }
     
