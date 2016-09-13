@@ -18,6 +18,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var checkingInProgress = CheckingInProgress()
     
+    var imageSize: Int = 0
+    var imageSize_up: Int = 0
+    var imageSize_down: Int = 0
+    
     var photo: UIImageView!
     
     var iteration: Int = 0
@@ -25,7 +29,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     let imagePickerController = UIImagePickerController()
     
-    var resultMessage: String = "You match perfectly! 88%"
+    //var resultMessage: String = "Perfect! 100%"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,11 +108,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func addPhoto(sender: UITapGestureRecognizer) {
         photoAlert()
         photo = photoImageView
+        imageSize_up = imageSize
     }
     
     @IBAction func addPhoto_down(sender: UITapGestureRecognizer) {
         photoAlert()
         photo = photoImageView_down
+        imageSize_down = imageSize
     }
     
     // Functions for checking the matching
@@ -174,10 +180,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    func resultMessage(imageSize_up: Int, imageSize_down: Int) -> String {
+        let result = (imageSize_up + imageSize_down) % 100
+        return "You match perfectly: \(result)"
+    }
+    
     func result() {
         let alert = UIAlertController(
             title: nil,
-            message: resultMessage,
+            message: resultMessage(imageSize_up, imageSize_down: imageSize_down),
             preferredStyle: .Alert)
         let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alert.addAction(okButton)
@@ -203,6 +214,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         photo.contentMode = .ScaleAspectFill
         photo.image = selectedImage
+        let imgData: NSData = NSData(data: UIImageJPEGRepresentation(selectedImage, 1)!)
+        imageSize = imgData.length
         dismissViewControllerAnimated(true, completion: nil)
     }
     
