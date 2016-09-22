@@ -125,7 +125,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func close() {
         checkingInProgress.hideIndicator()
-        //CheckingInProgress.shared.hideIndicator()
+
         if iteration != 0 {
             checking()
         } else {
@@ -134,7 +134,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func setCloseTimer() {
-        _ = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(ViewController.close), userInfo: nil, repeats: false)
+        _ = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.close), userInfo: nil, repeats: false)
     }
     
     func checking() {
@@ -154,8 +154,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         checkingInProgress.showIndicator(view)
         setCloseTimer()
-        
-        //CheckingInProgress.shared.showIndicator(view)
     }
 
     func twoPhotosMissing() {
@@ -177,8 +175,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         alert.addAction(okButton)
         presentViewController(alert, animated: true, completion: nil)
     }
-    
-    
     
     func resultMessage(imageSize_up: Int, imageSize_down: Int) -> String {
         var result = (imageSize_up + imageSize_down) % 100
