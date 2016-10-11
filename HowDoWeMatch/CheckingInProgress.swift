@@ -21,14 +21,14 @@ class CheckingInProgress: UIView
 //        return Static.instance
 //    }
     
-    func showIndicator(view: UIView) {
+    func showIndicator(_ view: UIView) {
         //let width = CGFloat(arc4random()) % view.bounds.width * 0.8
         //let height = CGFloat(arc4random()) % view.bounds.height * 0.8
         //searchingIndicator.center = CGPoint(x: 100, y: 100)
         searchingIndicator.center = position
         searchingIndicator.hidesWhenStopped = true
-        searchingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        searchingIndicator.color = UIColor.cyanColor()
+        searchingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        searchingIndicator.color = UIColor.cyan
         view.addSubview(searchingIndicator)
         searchingIndicator.startAnimating()
     }

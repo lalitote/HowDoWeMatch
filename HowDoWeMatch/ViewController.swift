@@ -38,19 +38,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         photoImageView.clipsToBounds = true
         
         photoImageView.layer.borderWidth = 1
-        photoImageView.layer.borderColor = UIColor.blackColor().CGColor
+        photoImageView.layer.borderColor = UIColor.black.cgColor
         
         photoImageView_down.layer.cornerRadius = 3
         photoImageView_down.clipsToBounds = true
         
         photoImageView_down.layer.borderWidth = 1
-        photoImageView_down.layer.borderColor = UIColor.blackColor().CGColor
+        photoImageView_down.layer.borderColor = UIColor.black.cgColor
         
         buttonCheck.layer.cornerRadius = 3
         buttonCheck.clipsToBounds = true
         
         buttonCheck.layer.borderWidth = 1
-        buttonCheck.layer.borderColor = UIColor.blackColor().CGColor
+        buttonCheck.layer.borderColor = UIColor.black.cgColor
         
         imagePickerController.delegate = self
         
@@ -66,60 +66,60 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let alert = UIAlertController(
             title: "Adding Photo",
             message: "Make a photo or chose from the Photo Library",
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         let makePhoto = UIAlertAction(
             title: "Camera",
-            style: .Default) {(action) -> Void in self.shootPhoto()}
+            style: .default) {(action) -> Void in self.shootPhoto()}
         let addPhotoFromCamera = UIAlertAction(
             title: "Photo Library",
-            style: .Default) { (action) -> Void in self.photoFromLibrary()}
+            style: .default) { (action) -> Void in self.photoFromLibrary()}
         alert.addAction(makePhoto)
         alert.addAction(addPhotoFromCamera)
-        presentViewController(alert,
+        present(alert,
                               animated: true,
                               completion: nil)
     }
     
     func shootPhoto() {
-        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+        if UIImagePickerController.availableCaptureModes(for: .rear) != nil {
             imagePickerController.allowsEditing = false
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            imagePickerController.cameraCaptureMode = .Photo
-            imagePickerController.modalPresentationStyle = .FullScreen
-            presentViewController(imagePickerController, animated: true, completion: nil)
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+            imagePickerController.cameraCaptureMode = .photo
+            imagePickerController.modalPresentationStyle = .fullScreen
+            present(imagePickerController, animated: true, completion: nil)
         } else {
             noCamera()
         }
     }
     
     func noCamera() {
-        let missingCameraAlert = UIAlertController (title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
-        let okAction = UIAlertAction (title: "OK", style: .Default, handler: nil)
+        let missingCameraAlert = UIAlertController (title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .alert)
+        let okAction = UIAlertAction (title: "OK", style: .default, handler: nil)
         missingCameraAlert.addAction(okAction)
-        presentViewController(missingCameraAlert, animated: true, completion: nil)
+        present(missingCameraAlert, animated: true, completion: nil)
     }
     
     func photoFromLibrary() {
         imagePickerController.allowsEditing = false
-        imagePickerController.sourceType = .PhotoLibrary
-        presentViewController(imagePickerController, animated: true, completion: nil)
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
     }
 
-    @IBAction func addPhoto(sender: UITapGestureRecognizer) {
+    @IBAction func addPhoto(_ sender: UITapGestureRecognizer) {
         photoAlert()
         photo = photoImageView
     }
     
-    @IBAction func addPhoto_down(sender: UITapGestureRecognizer) {
+    @IBAction func addPhoto_down(_ sender: UITapGestureRecognizer) {
         photoAlert()
         photo = photoImageView_down
     }
     
     // Functions for checking the matching
     
-    func randomNumber(range: Range<Int>) -> Int {
-        let min = range.startIndex
-        let max = range.endIndex
+    func randomNumber(_ range: Range<Int>) -> Int {
+        let min = range.lowerBound
+        let max = range.upperBound
         return Int(arc4random_uniform(UInt32(max - min))) + min
     }
     
@@ -134,7 +134,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func setCloseTimer() {
-        _ = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.close), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.close), userInfo: nil, repeats: false)
     }
     
     func checking() {
@@ -143,11 +143,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         var height: Int
         if iteration % 2 == 0 {
-            height = randomNumber(40...Int(photoImageView.bounds.height)-40)
+            height = randomNumber(40..<Int(photoImageView.bounds.height)-40)
         } else {
-            height = randomNumber(Int(photoImageView.bounds.height + 48)...Int(photoImageView.bounds.height * 2)-40)
+            height = randomNumber(Int(photoImageView.bounds.height + 48)..<Int(photoImageView.bounds.height * 2)-40)
         }
-        let width = randomNumber(40...Int(photoImageView.bounds.width))
+        let width = randomNumber(40..<Int(photoImageView.bounds.width))
         
         checkingInProgress.position.x = CGFloat(width)
         checkingInProgress.position.y = CGFloat(height)
@@ -160,23 +160,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let alert = UIAlertController(
             title: "Oops!",
             message: "You didn't choose the photos",
-            preferredStyle: .Alert)
-        let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
     func onePhotosMissing() {
         let alert = UIAlertController(
             title: "Oops!",
             message: "Choose another photo",
-            preferredStyle: .Alert)
-        let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
-    func resultMessage(imageSize_up: Int, imageSize_down: Int) -> String {
+    func resultMessage(_ imageSize_up: Int, imageSize_down: Int) -> String {
         var result = (imageSize_up + imageSize_down) % 100
         if imageSize_down == imageSize_up {
             result = 100
@@ -204,23 +204,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func result() {
-        let imgData_up: NSData = NSData(data: UIImageJPEGRepresentation(photoImageView.image!, 1)!)
-        imageSize_up = imgData_up.length
+        let imgData_up: Data = NSData(data: UIImageJPEGRepresentation(photoImageView.image!, 1)!) as Data
+        imageSize_up = imgData_up.count
         
-        let imgData_down: NSData = NSData(data: UIImageJPEGRepresentation(photoImageView_down.image!, 1)!)
-        imageSize_down = imgData_down.length
+        let imgData_down: Data = NSData(data: UIImageJPEGRepresentation(photoImageView_down.image!, 1)!) as Data
+        imageSize_down = imgData_down.count
         
         let alert = UIAlertController(
             title: nil,
             message: resultMessage(imageSize_up, imageSize_down: imageSize_down),
-            preferredStyle: .Alert)
-        let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 
     
-    @IBAction func checkIfWeMatch(sender: UIButton) {
+    @IBAction func checkIfWeMatch(_ sender: UIButton) {
         if photoImageView.image == nil && photoImageView_down.image == nil  {
             twoPhotosMissing()
         } else if photoImageView_down.image == nil || photoImageView.image == nil {
@@ -234,15 +234,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //MARK: Delegates
     
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        photo.contentMode = .ScaleAspectFill
+        photo.contentMode = .scaleAspectFill
         photo.image = selectedImage
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
