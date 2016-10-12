@@ -221,11 +221,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     
     @IBAction func checkIfWeMatch(_ sender: UIButton) {
-        if photoImageView.image == nil && photoImageView_down.image == nil  {
+        if (photoImageView.image == #imageLiteral(resourceName: "defaultImage") && photoImageView_down.image == #imageLiteral(resourceName: "defaultImage")) || (photoImageView.image == nil && photoImageView_down.image == nil)  {
             twoPhotosMissing()
-        } else if photoImageView_down.image == nil || photoImageView.image == nil {
+        }else if (photoImageView_down.image == #imageLiteral(resourceName: "defaultImage") || photoImageView.image == #imageLiteral(resourceName: "defaultImage")) || (photoImageView_down.image == nil || photoImageView.image == nil) {
             onePhotosMissing()
-        } else {
+        }else {
             iteration = numberOfIterations
             checking()
         }

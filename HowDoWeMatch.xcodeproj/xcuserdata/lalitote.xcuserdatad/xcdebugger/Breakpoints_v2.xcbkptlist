@@ -94,7 +94,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
             endingLineNumber = "32"
-            landmarkName = "showIndicator(view:)"
+            landmarkName = "showIndicator(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
