@@ -157,6 +157,7 @@
 				TargetAttributes = {
 					EA0469941D63A2CE003E3CFC = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = T26WT98Q79;
 						LastSwiftMigration = 0800;
 					};
 					EA0469A81D63A2CE003E3CFC = {
@@ -348,6 +349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T26WT98Q79;
 				INFOPLIST_FILE = HowDoWeMatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lalitote.HowDoWeMatch;
@@ -360,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T26WT98Q79;
 				INFOPLIST_FILE = HowDoWeMatch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lalitote.HowDoWeMatch;
